@@ -38,8 +38,8 @@ function App() {
   }
 
   const handleSave = (index) => {
-    const newTodos = todoList
-    newTodos[index] = editingTodo
+    const newTodos = [...todoList]
+    newTodos[index] = {...newTodos[index], task: editingTodo.task}
     setTodoList(newTodos)
     setEditingTodo(null)
   }
@@ -72,7 +72,7 @@ function App() {
                           value = {editingTodo.task} 
                           onChange = {(event) => setEditingTodo({...editingTodo, task: event.target.value})}
                         />
-                        <button onClick={() => handleSave()}>Save</button>
+                        <button onClick={() => handleSave(index)}>Save</button>
                       </>
                     ) : (
                       <>
