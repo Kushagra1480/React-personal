@@ -1,8 +1,36 @@
-li {
-  display: inline;
+html {
+  height: 100%;
 }
 
-.done{
-  color: grey;
-  text-decoration: line-through;
+body {
+  margin: 0;
+  padding: 0;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 2em;
+  font-family: 'Roboto';
+  background-color: aquamarine;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input {
+  margin-left: 1em;
+}
+
+.todo-button {
+  margin-left: 2em;
+}
+
+

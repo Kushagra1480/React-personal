@@ -1,56 +1,20 @@
 import React, {useState} from 'react'
-import {v4 as uuidv4} from 'uuid'
 import '../src/App.css'
+import { handleClick, handleDelete, handleEdit, handleSave, toggleCompleted } from './helpers'
 
 function App() {
   const [todoList, setTodoList] = useState([])
   const [input, setInput] = useState("")
   const [editingTodo, setEditingTodo] = useState(null)
 
-  const handleClick = (event) => {
-    event.preventDefault()
-    const key = uuidv4()
-    setTodoList((prev) => [
-      ...prev,
-      {
-        key: key,
-        task: event.target.elements.todo.value,
-        done: false
-      },
-    ])
-    setInput("")
-  }
-
-  const toggleCompleted = (index) => {
-    const newTodos = [...todoList]
-    newTodos[index].done = !newTodos[index].done
-    setTodoList(newTodos)
-  }
-
-  const handleDelete = (index) => {
-    const newTodos = [...todoList]
-    newTodos.splice(index, 1)
-    setTodoList(newTodos)
-  }
-
-  const handleEdit = (index) => {
-    setEditingTodo(todoList[index])
-  }
-
-  const handleSave = (index) => {
-    const newTodos = [...todoList]
-    newTodos[index] = {...newTodos[index], task: editingTodo.task}
-    setTodoList(newTodos)
-    setEditingTodo(null)
-  }
-
   return (
-      <div>
-        <h1>Todo List</h1>
-        <form onSubmit = {handleClick}>
+    <div className='outer-container'>
+      <div className='container'> 
+        <h1>TODO LIST</h1>
+        <form className='todo-input' onSubmit = {(event) => handleClick(event, setTodoList, setInput)}>
           <label for = "todo">Enter Task</label>
           <input type="text" name="todo" onInput={(e) => setInput(e.target.value)} value = {input}/>
-          <button type = "submit">Add Todo</button>
+          <button className = 'todo-button' type = "submit">Add Todo</button>
         </form>
         <div>
           <ul>
@@ -72,17 +36,21 @@ function App() {
                           value = {editingTodo.task} 
                           onChange = {(event) => setEditingTodo({...editingTodo, task: event.target.value})}
                         />
-                        <button onClick={() => handleSave(index)}>Save</button>
+                        <button onClick={() => handleSave(index, 
+                          todoList, 
+                          editingTodo,
+                          setTodoList, 
+                          setEditingTodo)}>Save</button>
                       </>
                     ) : (
                       <>
                         <input 
                           type='checkbox'  
-                          onChange = {() => toggleCompleted(index)}
+                          onChange = {() => toggleCompleted(index, todoList, setTodoList)}
                         />
                           {todo.task}
-                        <button onClick = {() => handleDelete(index)}>Delete 🗑️</button>
-                        <button onClick = {() => handleEdit(index)}>Edit ✏️</button>
+                        <button onClick = {() => handleDelete(index, todoList, setTodoList)}>Delete 🗑️</button>
+                        <button onClick = {() => handleEdit(index, todoList, setEditingTodo)}>Edit ✏️</button>
                       </>
                     )}
                   </li> 
@@ -92,6 +60,7 @@ function App() {
           </ul>
         </div>
       </div>
+    </div>
   );
 }
 
