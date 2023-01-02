@@ -14,9 +14,9 @@ export const handleClick = (event, setTodoList, setInput) => {
     setInput("")
 }
 
-export const toggleCompleted = (index, todoList, setTodoList) => {
+export const toggleCompleted = (index, todoList, setTodoList, checked) => {
     const newTodos = [...todoList]
-    newTodos[index].done = !newTodos[index].done
+    newTodos[index].done = checked
     setTodoList(newTodos)
 }
 

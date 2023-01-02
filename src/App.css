@@ -7,10 +7,11 @@ body {
   padding: 0;
 }
 
+
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content:space-between;
   box-sizing: border-box;
   align-items: center;
   padding: 2em;
@@ -25,6 +26,11 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.todo-list{
+  list-style: none;
+  align-items: flex-end;
+}
+
 input {
   margin-left: 1em;
 }
@@ -32,5 +38,4 @@ input {
 .todo-button {
   margin-left: 2em;
 }
-
 
