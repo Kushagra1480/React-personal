@@ -32,34 +32,37 @@ function App() {
         fontFamily: 'Roboto',
         spacing: { xs: 15, sm: 20, md: 25, lg: 30, xl: 40 },
         }} withGlobalStyles withNormalizeCSS>
-      <Container size = 'xs' spacing = 'md' position = 'apart'>
-        <Box size = 'xs' mx = 'auto' spacing = 'md' > 
-          <Title align='center'>ToDo List</Title>
-            <Button leftIcon = {<Plus />} onClick = {() => setOpened(true)}>New Task</Button>
-            <Modal
-              opened = {opened}
-              title = 'New Task'
-              withCloseButton = {false}
-              onClose = {() => {setOpened(false)}}
-              centered
-            >
-              <form onSubmit = {(event) => {handleClick(event, setTodoList, setInput)
-              setOpened(false)}}>
-                <TextInput  
-                  type = 'text'
-                  label = 'Enter Todo'
-                  size = 'sm'
-                  name = 'todo' 
-                  onInput={(e) => setInput(e.target.value)} 
-                  value = {input}
-                />
-                <Space h = 'sm'/>
-                <Group position = 'right' mt = 'mid'>
-                  <Button onClick = {() => {setOpened(false)}}>Cancel</Button>
-                  <Button leftIcon = {<Plus />} type = "submit" >Add Todo</Button>
-                </Group>
-              </form>
-            </Modal>
+      <Container size = 'xs' spacing = 'xl' position = 'apart'>
+        <Box size = 'xs' mx = 'auto' spacing = 'xl' position = 'apart' mt = 'md'>
+          <Group position='apart' spacing = 'xs'>
+            <Title align='center' spacing = 'md'>ToDo List</Title>
+            <Button leftIcon = {<Plus />} onClick = {() => setOpened(true)} align = 'left'>New Task</Button>
+          </Group> 
+          <Modal
+            opened = {opened}
+            title = 'New Task'
+            withCloseButton = {false}
+            onClose = {() => {setOpened(false)}}
+            centered
+            size = 'md'
+          >
+            <form onSubmit = {(event) => {handleClick(event, setTodoList, setInput)
+            setOpened(false)}}>
+              <TextInput  
+                type = 'text'
+                label = 'Enter Todo'
+                size = 'sm'
+                name = 'todo' 
+                onInput={(e) => setInput(e.target.value)} 
+                value = {input}
+              />
+              <Space h = 'sm'/>
+              <Group position = 'right' mt = 'mid'>
+                <Button onClick = {() => {setOpened(false)}}>Cancel</Button>
+                <Button leftIcon = {<Plus />} type = "submit" >Add Todo</Button>
+              </Group>
+            </form>
+          </Modal>
           <Box>
               {todoList.map((todo, index) => {
                 return(
